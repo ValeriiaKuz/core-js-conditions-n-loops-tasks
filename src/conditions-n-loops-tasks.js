@@ -306,21 +306,14 @@ function getBalanceIndex(arr) {
   }
   let left = 0;
   let right = 0;
-
-  for (let i = 0, j = arr.length - 1; i < j; i += 1, j -= 1) {
+  for (let i = 1; i < arr.length; i += 1) {
+    right += arr[i];
+  }
+  for (let i = 0, j = 1; j < arr.length; i += 1, j += 1) {
+    right -= arr[j];
     left += arr[i];
-    right += arr[j];
-    while (left < right) {
-      i += 1;
-      left += arr[i];
-      while (right < left) {
-        j -= 1;
-        right += arr[j];
-      }
-    }
-
-    if (right === left && i + 1 !== j) {
-      return i + 1;
+    if (right === left) {
+      return j;
     }
   }
   return -1;
@@ -414,8 +407,19 @@ function getSpiralMatrix(size) {
  *    [7, 8, 9]         [9, 6, 3]   20 00  21 10  22 20
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const arrayForChange = matrix;
+  const size = arrayForChange[0].length;
+  for (let i = 0; i < size / 2; i += 1) {
+    for (let j = i; j < size - i - 1; j += 1) {
+      const cur = arrayForChange[i][j];
+      arrayForChange[i][j] = arrayForChange[size - 1 - j][i];
+      arrayForChange[size - 1 - j][i] = arrayForChange[size - 1 - i][size - 1 - j];
+      arrayForChange[size - 1 - i][size - 1 - j] = arrayForChange[j][size - 1 - i];
+      arrayForChange[j][size - 1 - i] = cur;
+    }
+  }
+  return matrix;
 }
 
 /**
@@ -432,54 +436,28 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
+// function quickSort(/* array */) {
+//   const pivot = array[0];
+//   const left = [];
+//   const right = [];
+//   for (let i = 1; i < array.length; i += 1) {
+//     if (array[i] < pivot) {
+//       left[left.length] = array[i];
+//     } else {
+//       right[right.length] = array[i];
+//     }
+//   }
+//   return [...quickSort(left), pivot, ...quickSort(right)];
+// }
 
-function sortByAsc(/* arr */) {
+function sortByAsc(/* array */) {
   throw new Error('Not implemented');
-  // const result = [...arr];
-  // function swap(items, left, right) {
-  //   const arrayS = [...items];
-  //   const temp = arrayS[left];
-  //   arrayS[left] = arrayS[right];
-  //   arrayS[right] = temp;
-  //   return arrayS;
+  // if (arr.length <= 1) {
+  //   return arr;
   // }
-  // function partition(array, left, right) {
-  //   const pivot = array[Math.floor((right + left) / 2)];
-  //   let l = left;
-  //   let r = right;
+  // const result = arr;
   //
-  //   while (l <= r) {
-  //     if (array[l] < pivot) {
-  //       l += 1;
-  //     }
-  //     if (array[r] > pivot) {
-  //       r -= 1;
-  //     }
-  //     if (l <= r) {
-  //       swap(array, l, r);
-  //       l += 1;
-  //       r -= 1;
-  //     }
-  //   }
-  //   return l;
-  // }
-  //
-  // function quickSort(arrayForSort, left = 0, right = arrayForSort.length - 1) {
-  //   let index;
-  //
-  //   if (arrayForSort.length > 1) {
-  //     index = partition(arrayForSort, left, right);
-  //     if (left < index - 1) {
-  //       quickSort(arrayForSort, left, index - 1);
-  //     }
-  //     if (index < right) {
-  //       quickSort(arrayForSort, index, right);
-  //     }
-  //   }
-  //   return arrayForSort;
-  // }
-  // quickSort(result);
-  // return result;
+  // return quickSort(result);
 }
 
 /**
