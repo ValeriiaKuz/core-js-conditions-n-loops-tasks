@@ -436,28 +436,26 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-// function quickSort(/* array */) {
-//   const pivot = array[0];
-//   const left = [];
-//   const right = [];
-//   for (let i = 1; i < array.length; i += 1) {
-//     if (array[i] < pivot) {
-//       left[left.length] = array[i];
-//     } else {
-//       right[right.length] = array[i];
-//     }
-//   }
-//   return [...quickSort(left), pivot, ...quickSort(right)];
-// }
+function insertionSort(arr) {
+  const arrLink = arr;
+  let key;
+  let j;
+  for (let i = 1; i < arr.length; i += 1) {
+    key = arrLink[i];
+    j = i - 1;
+    while (j >= 0 && arrLink[j] > key) {
+      arrLink[j + 1] = arrLink[j];
+      j -= 1;
+    }
+    arrLink[j + 1] = key;
+  }
+}
 
-function sortByAsc(/* array */) {
-  throw new Error('Not implemented');
-  // if (arr.length <= 1) {
-  //   return arr;
-  // }
-  // const result = arr;
-  //
-  // return quickSort(result);
+function sortByAsc(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+  return insertionSort(array);
 }
 
 /**
@@ -478,6 +476,9 @@ function sortByAsc(/* array */) {
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
 function shuffleChar(str, iterations) {
+  if (str.length < 2 || iterations === 0) {
+    return str;
+  }
   let result = str;
   for (let i = 0; i < iterations; i += 1) {
     let shuffled = '';
