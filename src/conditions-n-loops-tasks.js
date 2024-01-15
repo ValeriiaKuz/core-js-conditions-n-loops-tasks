@@ -408,15 +408,15 @@ function getSpiralMatrix(size) {
  *  ]                 ]
  */
 function rotateMatrix(matrix) {
-  const arrayForChange = matrix;
-  const size = arrayForChange[0].length;
+  const arrayLink = matrix;
+  const size = arrayLink[0].length;
   for (let i = 0; i < size / 2; i += 1) {
     for (let j = i; j < size - i - 1; j += 1) {
-      const cur = arrayForChange[i][j];
-      arrayForChange[i][j] = arrayForChange[size - 1 - j][i];
-      arrayForChange[size - 1 - j][i] = arrayForChange[size - 1 - i][size - 1 - j];
-      arrayForChange[size - 1 - i][size - 1 - j] = arrayForChange[j][size - 1 - i];
-      arrayForChange[j][size - 1 - i] = cur;
+      const cur = arrayLink[i][j];
+      arrayLink[i][j] = arrayLink[size - 1 - j][i];
+      arrayLink[size - 1 - j][i] = arrayLink[size - 1 - i][size - 1 - j];
+      arrayLink[size - 1 - i][size - 1 - j] = arrayLink[j][size - 1 - i];
+      arrayLink[j][size - 1 - i] = cur;
     }
   }
   return matrix;
