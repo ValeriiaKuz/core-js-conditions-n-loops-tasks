@@ -490,8 +490,11 @@ function shuffleChar(str, iterations) {
         shuffled += result[j];
       }
     }
-    shuffled += oddCharacters;
-    result = shuffled;
+    result = shuffled + oddCharacters;
+    // выход из "зацикленности"
+    if (result === str) {
+      return shuffleChar(str, iterations % (i + 1));
+    }
   }
 
   return result;
