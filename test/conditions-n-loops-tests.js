@@ -88,11 +88,7 @@ describe('core-js-conditions-n-loops', () => {
         tasks.canQueenCaptureKing({ x: 3, y: 5 }, { x: 8, y: 4 }),
         false
       );
-      assert.equal(
-        forbidden.isCommented(tasks.getMaxNumber),
-        false,
-        `Be sure to remove comments from the final solution`
-      );
+      assert.equal(forbidden.isCommented(tasks.getMaxNumber), false);
     }
   );
 

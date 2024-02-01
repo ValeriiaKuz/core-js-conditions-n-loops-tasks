@@ -491,7 +491,6 @@ function shuffleChar(str, iterations) {
       }
     }
     result = shuffled + oddCharacters;
-    // выход из "зацикленности"
     if (result === str) {
       return shuffleChar(str, iterations % (i + 1));
     }
